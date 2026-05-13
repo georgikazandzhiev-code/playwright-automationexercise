@@ -43,7 +43,7 @@ export class SignupLoginPage extends BasePage {
     await this.signupNameInput.fill('Negative Test User');
     await this.signupEmailInput.fill(email);
     const validity = await this.signupEmailInput.evaluate<boolean>(
-      (el: HTMLInputElement) => el.validity.valid,
+      (el: HTMLElement | SVGElement) => (el as HTMLInputElement).validity.valid,
     );
     expect(validity, 'Expected invalid email to fail HTML5 validation').toBe(false);
   };

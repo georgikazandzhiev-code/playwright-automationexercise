@@ -122,7 +122,7 @@ export class RegisterAccountPage extends BasePage {
     await this.zipInput.fill('90001');
     await this.mobileInput.fill('5551234567');
     const validity = await this.passwordInput.evaluate<boolean>(
-      (el: HTMLInputElement) => el.validity.valid,
+      (el: HTMLElement | SVGElement) => (el as HTMLInputElement).validity.valid,
     );
     expect(validity, 'Expected empty password to be invalid per HTML5').toBe(false);
   };
