@@ -1,0 +1,24 @@
+---
+description: Automation Exercise POM project layout and conventions
+alwaysApply: true
+---
+
+# Automation Exercise — project overview
+
+Playwright TypeScript tests target **`https://www.automationexercise.com`** (override with `BASE_URL`).
+
+## Layout
+
+- `src/ui/pages/*.page.ts` — Page Objects (locators first, methods + assertions below).
+- `src/ui/fixtures.ts` — Custom `test` wiring fixtures (no PageManager).
+- `src/ui/data-providers/*.ts` — Test data; import strings from `@utils/constants`.
+- `src/utils/constants.ts` — Shared literals and patterns.
+- `src/tests/ui/*.spec.ts` — Flows only; use `withStepContext` for clearer failures.
+
+## Credentials
+
+Task 3 positive requires `TEST_USER_EMAIL` / `TEST_USER_PASSWORD` in `.env` (or CI secrets).
+
+## Commands
+
+`npm test`, `npm run test:headed`, `npm run typecheck`, `npm run format`.

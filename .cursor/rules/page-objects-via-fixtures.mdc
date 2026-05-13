@@ -1,0 +1,9 @@
+---
+description: Register page object fixtures in src/ui/fixtures.ts
+globs: ["**/*.spec.ts", "src/ui/fixtures.ts"]
+alwaysApply: false
+---
+
+# Fixtures
+
+Instantiate page objects in `src/ui/fixtures.ts`. Never `new SomePage(page)` inside specs.

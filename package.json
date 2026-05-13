@@ -1,0 +1,21 @@
+{
+  "name": "playwright-automationexercise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright POM tests for automationexercise.com (registration, search/cart, login/logout).",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:sanity": "playwright test --grep @sanity",
+    "test:ui": "playwright test",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.10",
+    "dotenv": "^16.4.7",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,8 @@
+---
+description: Constants live in src/utils/constants.ts
+alwaysApply: true
+---
+
+# Constants
+
+All reusable literals belong in `src/utils/constants.ts`. Data providers import from `@utils/constants` instead of duplicating values.

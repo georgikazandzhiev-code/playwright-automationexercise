@@ -1,0 +1,9 @@
+---
+description: Specs must not contain locators or direct locator assertions
+globs: "**/*.spec.ts"
+alwaysApply: false
+---
+
+# Page Objects Only
+
+Specs orchestrate page object methods only. Assertions and selectors live under `src/ui/pages/`.

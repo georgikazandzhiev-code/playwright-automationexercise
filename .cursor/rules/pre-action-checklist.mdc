@@ -1,0 +1,12 @@
+---
+description: Mandatory checklist before code changes
+alwaysApply: true
+---
+
+# Pre-Action Checklist
+
+1. New shared string or timeout → `src/utils/constants.ts`.
+2. Reuse helpers in page objects before adding new ones.
+3. Arrow functions, strict typing, no `any`.
+4. Specs stay free of raw locators and direct `expect` on locators — use page objects.
+5. Prettier: single quotes, trailing commas, width 100.
