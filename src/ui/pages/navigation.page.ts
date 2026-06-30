@@ -40,10 +40,12 @@ export class NavigationPage extends BasePage {
 
   /**
    * Open Signup / Login page.
+   * Uses direct navigation because header "Signup / Login" clicks are intermittently
+   * blocked by Google vignette ad interstitials on this practice site (the click
+   * intercepts and times out). Landing on `/login` is equivalent for the flows here.
    */
   goToSignupLogin = async (): Promise<void> => {
-    await this.signupLoginLink.click();
-    await this.settleOverlaysAfterAction();
+    await this.gotoPath('/login');
   };
 
   /**
