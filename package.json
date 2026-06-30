@@ -2,12 +2,15 @@
   "name": "playwright-automationexercise",
   "version": "1.0.0",
   "private": true,
-  "description": "Playwright POM tests for automationexercise.com (registration, search/cart, login/logout).",
+  "description": "Playwright POM + API tests for automationexercise.com (UI flows and REST API list).",
   "scripts": {
     "test": "playwright test",
-    "test:headed": "playwright test --headed",
+    "test:api": "playwright test --project=api",
+    "test:ui": "playwright test --project=chromium",
+    "test:headed": "playwright test --project=chromium --headed",
     "test:sanity": "playwright test --grep @sanity",
-    "test:ui": "playwright test",
+    "test:report": "playwright test --config=playwright.report.config.ts",
+    "report:open": "playwright show-report",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },

@@ -13,8 +13,9 @@
     "paths": {
       "@pages/*": ["src/ui/pages/*"],
       "@utils/*": ["src/utils/*"],
-      "@data-providers/*": ["src/ui/data-providers/*"]
+      "@data-providers/*": ["src/ui/data-providers/*"],
+      "@api-data-providers/*": ["src/api/data-providers/*"]
     }
   },
-  "include": ["src/**/*.ts", "playwright.config.ts"]
+  "include": ["src/**/*.ts", "playwright.config.ts", "playwright.report.config.ts"]
 }

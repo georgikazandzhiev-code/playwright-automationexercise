@@ -21,11 +21,16 @@ export class ProductDetailsPage extends BasePage {
 
   /** Single price line only (avoid a broad `p`/`span` that also includes Quantity / Add to cart). */
   get priceLabel(): Locator {
-    return this.page.locator('.product-information').getByText(/^Rs\.\s*[\d,.]+\s*$/i).first();
+    return this.page
+      .locator('.product-information')
+      .getByText(/^Rs\.\s*[\d,.]+\s*$/i)
+      .first();
   }
 
   get addToCartButton(): Locator {
-    return this.page.getByRole('button', { name: /Add to cart/i }).or(this.page.locator('button.btn.btn-default.cart'));
+    return this.page
+      .getByRole('button', { name: /Add to cart/i })
+      .or(this.page.locator('button.btn.btn-default.cart'));
   }
 
   get continueShoppingButton(): Locator {

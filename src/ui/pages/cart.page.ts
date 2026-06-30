@@ -37,6 +37,8 @@ export class CartPage extends BasePage {
     const row = this.rowByProductName(productName);
     await expect(row).toBeVisible();
     await expect(row).toContainText(priceSnippet);
-    await expect(row.locator('td.cart_quantity').getByRole('button', { name: quantity })).toBeVisible();
+    await expect(
+      row.locator('td.cart_quantity').getByRole('button', { name: quantity }),
+    ).toBeVisible();
   };
 }

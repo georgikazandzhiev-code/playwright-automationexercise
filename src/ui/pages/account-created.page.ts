@@ -17,7 +17,9 @@ export class AccountCreatedPage extends BasePage {
   }
 
   get continueButton(): Locator {
-    return this.page.locator('[data-qa="continue-button"]').or(this.page.getByRole('link', { name: 'Continue' }));
+    return this.page
+      .locator('[data-qa="continue-button"]')
+      .or(this.page.getByRole('link', { name: 'Continue' }));
   }
 
   // ── Methods (below) ──

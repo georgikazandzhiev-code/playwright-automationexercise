@@ -5,6 +5,7 @@ dotenv.config();
 
 const baseURL = process.env.BASE_URL ?? 'https://www.automationexercise.com';
 
+/** Full suite with HTML + JSON artifacts for management / audit (`npm run test:report`). */
 export default defineConfig({
   testDir: './src/tests',
   timeout: 120_000,
@@ -13,7 +14,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 1 : 2,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: [
+    ['list'],
+    ['html', { open: 'never', outputFolder: 'playwright-report' }],
+    ['json', { outputFile: 'test-results/report.json' }],
+  ],
   outputDir: 'test-results',
   use: {
     baseURL,
@@ -21,7 +26,6 @@ export default defineConfig({
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    // Headed locally (see browser); GitHub Actions sets CI=true → headless there.
     headless: !!process.env.CI,
     actionTimeout: 20_000,
     navigationTimeout: 45_000,

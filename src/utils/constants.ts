@@ -1,6 +1,23 @@
 /** Default UI base URL (override with BASE_URL in .env). */
 export const DEFAULT_BASE_HOST = 'www.automationexercise.com';
 
+/** REST paths (Automation Exercise API list). */
+export const API_PRODUCTS_LIST_PATH = '/api/productsList';
+export const API_SEARCH_PRODUCT_PATH = '/api/searchProduct';
+
+/** API body `responseCode` values (site JSON; HTTP status is often 200 for all). */
+export const API_RESPONSE_CODE_OK = 200;
+/** Current JSON error code on some deployments. */
+export const API_RESPONSE_CODE_CLIENT_ERROR = 3;
+/** Legacy JSON error code still returned on www host (API 6). */
+export const API_RESPONSE_CODE_LEGACY_BAD_REQUEST = 400;
+
+/** HTTP status codes used in API assertions. */
+export const HTTP_STATUS_OK = 200;
+
+/** Substrings expected in API 6 error message (wording varies by host). */
+export const API_SEARCH_MISSING_PARAM_MESSAGE_MARKERS = ['search_product', 'missing'] as const;
+
 /** Success heading after full registration (Automation Exercise). */
 export const ACCOUNT_CREATED_HEADING = 'Account Created!';
 

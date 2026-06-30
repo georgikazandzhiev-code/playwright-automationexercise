@@ -11,9 +11,12 @@ Playwright TypeScript tests target **`https://www.automationexercise.com`** (ove
 
 - `src/ui/pages/*.page.ts` — Page Objects (locators first, methods + assertions below).
 - `src/ui/fixtures.ts` — Custom `test` wiring fixtures (no PageManager).
-- `src/ui/data-providers/*.ts` — Test data; import strings from `@utils/constants`.
+- `src/ui/data-providers/*.ts` — UI test data; import strings from `@utils/constants`.
+- `src/api/services/*.ts` — API calls + assertions; specs use fixtures, not raw `request`.
+- `src/api/data-providers/*.ts` — API scenario data.
+- `src/tests/ui/*.spec.ts` — UI flows only; use `withStepContext` for clearer failures.
+- `src/tests/api/*.spec.ts` — API flows only.
 - `src/utils/constants.ts` — Shared literals and patterns.
-- `src/tests/ui/*.spec.ts` — Flows only; use `withStepContext` for clearer failures.
 
 ## Credentials
 
@@ -21,4 +24,4 @@ Task 3 positive requires `TEST_USER_EMAIL` / `TEST_USER_PASSWORD` in `.env` (or 
 
 ## Commands
 
-`npm test`, `npm run test:headed`, `npm run typecheck`, `npm run format`.
+`npm test`, `npm run test:ui`, `npm run test:api`, `npm run test:headed`, `npm run typecheck`, `npm run format`.

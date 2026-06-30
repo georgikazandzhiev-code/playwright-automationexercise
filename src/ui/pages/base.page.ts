@@ -18,7 +18,9 @@ export class BasePage {
   gotoPath = async (path: string): Promise<void> => {
     // `commit` avoids hanging on long-running third-party scripts; overlays are cleared after.
     await this.page.goto(path, { waitUntil: 'commit' });
-    await this.page.waitForLoadState('domcontentloaded', { timeout: 30_000 }).catch(() => undefined);
+    await this.page
+      .waitForLoadState('domcontentloaded', { timeout: 30_000 })
+      .catch(() => undefined);
     await resolveSiteOverlays(this.page);
   };
 

@@ -32,7 +32,10 @@ export const dismissSiteConsentDialog = async (page: Page): Promise<void> => {
   for (const locator of rootCandidates) {
     try {
       await locator.first().click({ timeout: 5000 });
-      await locator.first().waitFor({ state: 'detached', timeout: 5000 }).catch(() => undefined);
+      await locator
+        .first()
+        .waitFor({ state: 'detached', timeout: 5000 })
+        .catch(() => undefined);
       return;
     } catch {
       // try next candidate
@@ -44,7 +47,10 @@ export const dismissSiteConsentDialog = async (page: Page): Promise<void> => {
       continue;
     }
     try {
-      await frame.getByRole('button', { name: /consent|accept all/i }).first().click({ timeout: 3000 });
+      await frame
+        .getByRole('button', { name: /consent|accept all/i })
+        .first()
+        .click({ timeout: 3000 });
       return;
     } catch {
       // next frame
@@ -93,7 +99,10 @@ export const dismissGoogleVignetteIfPresent = async (page: Page): Promise<void> 
       continue;
     }
     try {
-      await frame.getByRole('button', { name: /close|skip/i }).first().click({ timeout: 2000 });
+      await frame
+        .getByRole('button', { name: /close|skip/i })
+        .first()
+        .click({ timeout: 2000 });
       break;
     } catch {
       // next frame
@@ -145,7 +154,10 @@ export const blockThirdPartyAdRoutes = async (page: Page): Promise<void> => {
 export const installConsentHandler = async (page: Page): Promise<void> => {
   const blocker = page.getByRole('button', { name: /^consent$/i });
   await page.addLocatorHandler(blocker, async () => {
-    await page.getByRole('button', { name: /^consent$/i }).first().click();
+    await page
+      .getByRole('button', { name: /^consent$/i })
+      .first()
+      .click();
   });
 };
 

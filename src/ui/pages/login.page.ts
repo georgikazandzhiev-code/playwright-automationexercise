@@ -45,7 +45,9 @@ export class LoginPage extends BasePage {
    * @param displayName - Name portion shown after "Logged in as".
    */
   assertLoggedInAs = async (displayName: string): Promise<void> => {
-    const banner = this.page.getByText(new RegExp(`Logged in as\\s+${escapeRegExp(displayName)}`, 'i'));
+    const banner = this.page.getByText(
+      new RegExp(`Logged in as\\s+${escapeRegExp(displayName)}`, 'i'),
+    );
     await expect(banner).toBeVisible();
   };
 
