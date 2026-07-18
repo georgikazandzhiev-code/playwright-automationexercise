@@ -10,17 +10,17 @@ export class LoginPage extends BasePage {
     super(page);
   }
 
-  // ── Locators (top) ──
+  // ── Locators (top) ── (testIdAttribute = data-qa)
   get emailInput(): Locator {
-    return this.page.locator('[data-qa="login-email"]');
+    return this.page.getByTestId('login-email');
   }
 
   get passwordInput(): Locator {
-    return this.page.locator('[data-qa="login-password"]');
+    return this.page.getByTestId('login-password');
   }
 
   get loginButton(): Locator {
-    return this.page.locator('[data-qa="login-button"]');
+    return this.page.getByTestId('login-button');
   }
 
   get loginErrorParagraph(): Locator {

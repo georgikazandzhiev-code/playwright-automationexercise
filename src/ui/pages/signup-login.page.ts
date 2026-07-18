@@ -9,17 +9,17 @@ export class SignupLoginPage extends BasePage {
     super(page);
   }
 
-  // ── Locators (top) ──
+  // ── Locators (top) ── (testIdAttribute = data-qa)
   get signupNameInput(): Locator {
-    return this.page.locator('[data-qa="signup-name"]');
+    return this.page.getByTestId('signup-name');
   }
 
   get signupEmailInput(): Locator {
-    return this.page.locator('[data-qa="signup-email"]');
+    return this.page.getByTestId('signup-email');
   }
 
   get signupButton(): Locator {
-    return this.page.locator('[data-qa="signup-button"]');
+    return this.page.getByTestId('signup-button');
   }
 
   // ── Methods (below) ──

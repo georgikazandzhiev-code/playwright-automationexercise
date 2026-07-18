@@ -22,49 +22,49 @@ export class RegisterAccountPage extends BasePage {
     super(page);
   }
 
-  // ── Locators (top) ──
+  // ── Locators (top) ── (testIdAttribute = data-qa; #id fallbacks are last resort)
   get passwordInput(): Locator {
-    return this.page.locator('[data-qa="password"]').or(this.page.locator('#password'));
+    return this.page.getByTestId('password').or(this.page.locator('#password'));
   }
 
   get firstNameInput(): Locator {
-    return this.page.locator('[data-qa="first_name"]');
+    return this.page.getByTestId('first_name');
   }
 
   get lastNameInput(): Locator {
-    return this.page.locator('[data-qa="last_name"]');
+    return this.page.getByTestId('last_name');
   }
 
   get companyInput(): Locator {
-    return this.page.locator('[data-qa="company"]');
+    return this.page.getByTestId('company');
   }
 
   get addressInput(): Locator {
-    return this.page.locator('[data-qa="address1"]').or(this.page.locator('[data-qa="address"]'));
+    return this.page.getByTestId('address1').or(this.page.getByTestId('address'));
   }
 
   get countrySelect(): Locator {
-    return this.page.locator('[data-qa="country"]');
+    return this.page.getByTestId('country');
   }
 
   get stateInput(): Locator {
-    return this.page.locator('[data-qa="state"]');
+    return this.page.getByTestId('state');
   }
 
   get cityInput(): Locator {
-    return this.page.locator('[data-qa="city"]');
+    return this.page.getByTestId('city');
   }
 
   get zipInput(): Locator {
-    return this.page.locator('[data-qa="zipcode"]');
+    return this.page.getByTestId('zipcode');
   }
 
   get mobileInput(): Locator {
-    return this.page.locator('[data-qa="mobile_number"]');
+    return this.page.getByTestId('mobile_number');
   }
 
   get createAccountButton(): Locator {
-    return this.page.locator('[data-qa="create-account"]');
+    return this.page.getByTestId('create-account');
   }
 
   get mrTitleRadio(): Locator {

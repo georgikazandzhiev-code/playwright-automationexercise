@@ -1,10 +1,12 @@
 import { APIRequestContext, APIResponse, expect } from '@playwright/test';
-import type {
-  ApiErrorResponse,
-  CatalogProduct,
-  ProductsListResponse,
-  SearchProductsResponse,
-} from '../types/automation-exercise.types';
+import {
+  ApiErrorResponseSchema,
+  ProductsListResponseSchema,
+  SearchProductsResponseSchema,
+  type ApiErrorResponse,
+  type ProductsListResponse,
+  type SearchProductsResponse,
+} from '../schemas/automation-exercise.schema';
 import {
   API_PRODUCTS_LIST_PATH,
   API_RESPONSE_CODE_CLIENT_ERROR,
@@ -17,6 +19,8 @@ import {
 
 /**
  * Automation Exercise catalog/search endpoints (see /api_list on the site).
+ * Every response is validated against a Zod strict schema; only business values
+ * are asserted afterwards (shape/types are already proven by `.parse`).
  */
 export class ProductsApiService {
   constructor(private readonly request: APIRequestContext) {}
@@ -28,7 +32,7 @@ export class ProductsApiService {
 
   /**
    * POST /api/searchProduct — optional `search_product` form field.
-   * @param searchProduct - When omitted, the site returns API 6 (400 bad request).
+   * @param searchProduct - When omitted, the site returns API 6 (bad request).
    */
   searchProduct = async (searchProduct?: string): Promise<APIResponse> => {
     if (searchProduct === undefined) {
@@ -45,12 +49,9 @@ export class ProductsApiService {
   assertGetAllProductsReturnsCatalog = async (): Promise<ProductsListResponse> => {
     const response = await this.getAllProducts();
     expect(response.status(), 'GET productsList HTTP status').toBe(HTTP_STATUS_OK);
-    const body = (await response.json()) as ProductsListResponse;
+    const body = ProductsListResponseSchema.parse(await response.json());
     expect(body.responseCode, 'GET productsList responseCode').toBe(API_RESPONSE_CODE_OK);
     expect(body.products.length, 'catalog should contain products').toBeGreaterThan(0);
-    for (const product of body.products) {
-      this.assertProductShape(product);
-    }
     return body;
   };
 
@@ -61,7 +62,7 @@ export class ProductsApiService {
   assertSearchProductReturnsResults = async (keyword: string): Promise<SearchProductsResponse> => {
     const response = await this.searchProduct(keyword);
     expect(response.status(), 'POST searchProduct HTTP status').toBe(HTTP_STATUS_OK);
-    const body = (await response.json()) as SearchProductsResponse;
+    const body = SearchProductsResponseSchema.parse(await response.json());
     expect(body.responseCode, 'search responseCode').toBe(API_RESPONSE_CODE_OK);
     expect(body.products.length, 'search should return at least one product').toBeGreaterThan(0);
     return body;
@@ -73,7 +74,7 @@ export class ProductsApiService {
   assertSearchProductRejectsMissingParameter = async (): Promise<ApiErrorResponse> => {
     const response = await this.searchProduct();
     expect(response.status(), 'missing search_product HTTP status').toBe(HTTP_STATUS_OK);
-    const body = (await response.json()) as ApiErrorResponse;
+    const body = ApiErrorResponseSchema.parse(await response.json());
     expect(
       [API_RESPONSE_CODE_CLIENT_ERROR, API_RESPONSE_CODE_LEGACY_BAD_REQUEST],
       'missing search_product responseCode',
@@ -83,13 +84,5 @@ export class ProductsApiService {
       expect(normalizedMessage, `message should mention ${marker}`).toContain(marker);
     }
     return body;
-  };
-
-  private assertProductShape = (product: CatalogProduct): void => {
-    expect(product.id, 'product id').toBeGreaterThan(0);
-    expect(product.name.trim(), 'product name').not.toBe('');
-    expect(product.price, 'product price').toMatch(/Rs\./i);
-    expect(product.brand.trim(), 'product brand').not.toBe('');
-    expect(product.category.category.trim(), 'product category').not.toBe('');
   };
 }

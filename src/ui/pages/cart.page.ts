@@ -14,7 +14,20 @@ export class CartPage extends BasePage {
     return this.page.locator('#cart_info_table');
   }
 
+  // The cart "Proceed To Checkout" is an <a> without href, so it has no link role — match by text.
+  get proceedToCheckoutButton(): Locator {
+    return this.page.getByText('Proceed To Checkout');
+  }
+
   // ── Methods (below) ──
+  /**
+   * Proceed from the cart to the checkout page (logged-in user goes straight through).
+   */
+  proceedToCheckout = async (): Promise<void> => {
+    await this.proceedToCheckoutButton.click();
+    await this.settleOverlaysAfterAction();
+  };
+
   /**
    * Locate a cart row by product display name.
    * @param productName - Visible product title in the cart table.

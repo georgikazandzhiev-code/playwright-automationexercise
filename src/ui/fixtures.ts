@@ -6,8 +6,10 @@ import {
 } from '@utils/consent';
 import { AccountCreatedPage } from './pages/account-created.page';
 import { CartPage } from './pages/cart.page';
+import { CheckoutPage } from './pages/checkout.page';
 import { LoginPage } from './pages/login.page';
 import { NavigationPage } from './pages/navigation.page';
+import { PaymentPage } from './pages/payment.page';
 import { ProductDetailsPage } from './pages/product-details.page';
 import { ProductsPage } from './pages/products.page';
 import { RegisterAccountPage } from './pages/register-account.page';
@@ -22,6 +24,8 @@ type PageFixtures = {
   productsPage: ProductsPage;
   productDetailsPage: ProductDetailsPage;
   cartPage: CartPage;
+  checkoutPage: CheckoutPage;
+  paymentPage: PaymentPage;
 };
 
 /**
@@ -65,6 +69,12 @@ export const test = base.extend<PageFixtures>({
   },
   cartPage: async ({ page }, use) => {
     await use(new CartPage(page));
+  },
+  checkoutPage: async ({ page }, use) => {
+    await use(new CheckoutPage(page));
+  },
+  paymentPage: async ({ page }, use) => {
+    await use(new PaymentPage(page));
   },
 });
 

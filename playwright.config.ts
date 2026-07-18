@@ -1,5 +1,11 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
+import {
+  DEFAULT_ACTION_TIMEOUT_MS,
+  DEFAULT_LOCALE,
+  DEFAULT_TIMEZONE,
+  DEFAULT_VIEWPORT,
+} from './src/utils/constants';
 
 dotenv.config();
 
@@ -12,18 +18,22 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : 2,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  workers: 1,
+  reporter: [['list'], ['html', { open: 'never', outputFolder: 'playwright-report' }]],
   outputDir: 'test-results',
   use: {
     baseURL,
     testIdAttribute: 'data-qa',
+    headless: true,
+    viewport: DEFAULT_VIEWPORT,
+    locale: DEFAULT_LOCALE,
+    timezoneId: DEFAULT_TIMEZONE,
+    colorScheme: 'light',
+    contextOptions: { reducedMotion: 'reduce' },
     trace: 'retain-on-failure',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    // Headed locally (see browser); GitHub Actions sets CI=true → headless there.
-    headless: !!process.env.CI,
-    actionTimeout: 20_000,
+    actionTimeout: DEFAULT_ACTION_TIMEOUT_MS,
     navigationTimeout: 45_000,
   },
   projects: [

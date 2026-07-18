@@ -1,12 +1,17 @@
 /** Default UI base URL (override with BASE_URL in .env). */
 export const DEFAULT_BASE_HOST = 'www.automationexercise.com';
+export const DEFAULT_BASE_URL = 'https://www.automationexercise.com';
 
 /** REST paths (Automation Exercise API list). */
 export const API_PRODUCTS_LIST_PATH = '/api/productsList';
 export const API_SEARCH_PRODUCT_PATH = '/api/searchProduct';
+export const API_CREATE_ACCOUNT_PATH = '/api/createAccount';
+export const API_DELETE_ACCOUNT_PATH = '/api/deleteAccount';
 
 /** API body `responseCode` values (site JSON; HTTP status is often 200 for all). */
 export const API_RESPONSE_CODE_OK = 200;
+/** createAccount success code (HTTP stays 200; body carries 201). */
+export const API_RESPONSE_CODE_CREATED = 201;
 /** Current JSON error code on some deployments. */
 export const API_RESPONSE_CODE_CLIENT_ERROR = 3;
 /** Legacy JSON error code still returned on www host (API 6). */
@@ -36,6 +41,16 @@ export const WRONG_PASSWORD_PLACEHOLDER = 'WrongPassword!12345';
 /** Default country label for signup address form. */
 export const DEFAULT_COUNTRY_LABEL = 'United States';
 
+/** Task 4 — checkout / order confirmation copy (Automation Exercise). */
+export const ORDER_CONFIRMATION_TEXT = 'Congratulations! Your order has been confirmed!';
+export const ORDER_PLACED_HEADING = 'Order Placed!';
+export const DOWNLOAD_INVOICE_LABEL = 'Download Invoice';
+
 /** Default timeouts (ms). */
 export const DEFAULT_EXPECT_TIMEOUT_MS = 25_000;
 export const DEFAULT_ACTION_TIMEOUT_MS = 20_000;
+
+/** Fixed browser context for repeatable UI runs. */
+export const DEFAULT_VIEWPORT = { width: 1280, height: 720 } as const;
+export const DEFAULT_LOCALE = 'en-US';
+export const DEFAULT_TIMEZONE = 'UTC';

@@ -1,27 +1,12 @@
-export type ProductCategory = {
-  usertype: { usertype: string };
-  category: string;
-};
-
-export type CatalogProduct = {
-  id: number;
-  name: string;
-  price: string;
-  brand: string;
-  category: ProductCategory;
-};
-
-export type ProductsListResponse = {
-  responseCode: number;
-  products: CatalogProduct[];
-};
-
-export type SearchProductsResponse = {
-  responseCode: number;
-  products: CatalogProduct[];
-};
-
-export type ApiErrorResponse = {
-  responseCode: number;
-  message: string;
-};
+/**
+ * Back-compat re-export. The single source of truth for API response shapes is now
+ * the Zod schema module (types are inferred from the schemas there).
+ */
+export type {
+  ProductCategory,
+  CatalogProduct,
+  ProductsListResponse,
+  SearchProductsResponse,
+  ApiErrorResponse,
+  ApiMessageResponse,
+} from '../schemas/automation-exercise.schema';

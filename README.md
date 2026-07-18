@@ -19,7 +19,8 @@ End-to-end tests for **https://www.automationexercise.com** using the same **Pag
 ## Setup
 
 ```powershell
-cd "C:\Users\Georgi Kazandzhiev\playwright-automationexercise"
+git clone https://github.com/georgikazandzhiev-code/playwright-automationexercise.git
+cd playwright-automationexercise
 npm install
 npx playwright install
 copy .env.example .env   # then edit values

@@ -11,9 +11,10 @@ export class ProductsPage extends BasePage {
 
   // ── Locators (top) ──
   get searchInput(): Locator {
-    return this.page.locator('#search_product');
+    return this.page.getByPlaceholder('Search Product');
   }
 
+  // Submit button has no accessible name / testid — CSS id is the only stable hook (last resort).
   get searchSubmit(): Locator {
     return this.page.locator('#submit_search');
   }
